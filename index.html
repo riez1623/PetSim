@@ -2,17 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Offline Pet Simulator</title>
+  <title>Offline Pixel Pet</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>🐾 Offline Pet Simulator</h1>
-  <div id="pet">🐶</div>
-  <div class="stats" id="stats"></div>
+  <div id="setup" class="hidden">
+    <h2>Choose Your Pet</h2>
+    <div id="pet-options">
+      <img src="img/dog.png" alt="Dog" onclick="selectPet('dog')">
+      <img src="img/cat.png" alt="Cat" onclick="selectPet('cat')">
+      <img src="img/rabbit.png" alt="Rabbit" onclick="selectPet('rabbit')">
+    </div>
+    <input type="text" id="petNameInput" placeholder="Enter your pet's name">
+    <br><br>
+    <button onclick="startGame()">Start Game</button>
+  </div>
 
-  <button onclick="feedPet()">Feed 🍖</button>
-  <button onclick="playWithPet()">Play 🎾</button>
+  <div id="game" class="hidden">
+    <h1>🐾 Offline Pet Simulator</h1>
+    <div id="pet-container">
+      <img id="petImage" src="" alt="Pet">
+    </div>
+    <div class="stats" id="stats"></div>
+    <button onclick="feedPet()">Feed 🍖</button>
+    <button onclick="playWithPet()">Play 🎮</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
