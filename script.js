@@ -1,5 +1,5 @@
 let pet = {
-  name: "Riezachu",
+  name: "Aso ni dila pinya",
   hunger: 100,
   happiness: 100,
   age: 0
