@@ -3,38 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Offline Pet Simulator</title>
-  <style>
-    body {
-      font-family: 'Comic Sans MS', sans-serif;
-      background: #fdf6e3;
-      text-align: center;
-      padding: 40px;
-    }
-
-    #pet {
-      font-size: 80px;
-      transition: transform 0.2s;
-    }
-
-    .stats {
-      font-size: 20px;
-      margin: 10px;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      background-color: #ffdd57;
-    }
-
-    button:hover {
-      background-color: #ffd000;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -45,74 +14,6 @@
   <button onclick="feedPet()">Feed 🍖</button>
   <button onclick="playWithPet()">Play 🎾</button>
 
-  <script>
-    let pet = {
-      name: "Riezachu",
-      hunger: 100,
-      happiness: 100,
-      age: 0
-    };
-
-    function savePet() {
-      localStorage.setItem("petData", JSON.stringify(pet));
-      localStorage.setItem("lastVisit", Date.now());
-    }
-
-    function loadPet() {
-      let savedPet = localStorage.getItem("petData");
-      let lastVisit = localStorage.getItem("lastVisit");
-
-      if (savedPet && lastVisit) {
-        pet = JSON.parse(savedPet);
-        let now = Date.now();
-        let minsGone = Math.floor((now - lastVisit) / 60000); // 1 min = 60,000ms
-
-        // Offline changes
-        pet.hunger = Math.max(0, pet.hunger - minsGone * 2);
-        pet.happiness = Math.max(0, pet.happiness - minsGone * 1);
-        pet.age += Math.floor(minsGone / 60);
-
-        alert(`You were gone for ${minsGone} minutes.\nYour pet missed you! 🥺`);
-      }
-    }
-
-    function updateUI() {
-      document.getElementById("stats").innerHTML = `
-        Name: ${pet.name}<br>
-        Age: ${pet.age}<br>
-        Hunger: ${pet.hunger}/100<br>
-        Happiness: ${pet.happiness}/100
-      `;
-
-      // Pet reaction (sad if too hungry)
-      const petEmoji = pet.hunger <= 20 || pet.happiness <= 20 ? "😢" : "🐶";
-      document.getElementById("pet").textContent = petEmoji;
-    }
-
-    function feedPet() {
-      pet.hunger = Math.min(100, pet.hunger + 20);
-      updateUI();
-      savePet();
-    }
-
-    function playWithPet() {
-      pet.happiness = Math.min(100, pet.happiness + 15);
-      updateUI();
-      savePet();
-    }
-
-    // Initialize
-    window.onload = () => {
-      loadPet();
-      updateUI();
-      setInterval(() => {
-        // Slowly drain stats every minute
-        pet.hunger = Math.max(0, pet.hunger - 1);
-        pet.happiness = Math.max(0, pet.happiness - 1);
-        updateUI();
-        savePet();
-      }, 60000); // 1 minute = 60,000ms
-    };
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
