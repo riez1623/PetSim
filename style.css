@@ -1,0 +1,30 @@
+body {
+  font-family: 'Comic Sans MS', sans-serif;
+  background: #fdf6e3;
+  text-align: center;
+  padding: 40px;
+}
+
+#pet {
+  font-size: 80px;
+  transition: transform 0.2s;
+}
+
+.stats {
+  font-size: 20px;
+  margin: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #ffdd57;
+}
+
+button:hover {
+  background-color: #ffd000;
+}
